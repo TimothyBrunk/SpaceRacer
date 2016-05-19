@@ -16,7 +16,7 @@ var buildScoresTable = (function(data){
 	// Sort data by snowDepth
 	// data.sort(function(a,b){
 	// 	return b.score - a.snowDepth;
- // });
+	// });
 
 
 	var scoresDiv = document.getElementById('scores');
@@ -45,26 +45,27 @@ var buildScoresTable = (function(data){
 
 
 //*********************Headers********************************************
+//
+//var trHead = document.createElement('tr');
+//var headers = ["Player Name" , "Player Score"];
+//
+//headers.forEach(function(val,ind,arr){
+//  var th = document.createElement('th');
+//  th.textContent = val;
+//  trHead.appendChild(th);
+//});
+//
+//table.appendChild(trHead); // Add headers to table
+//
+//data.forEach(function(val,ind,arr){
+//  // Construct resort table rows
+//  var tr = document.createElement('tr');
+//
+//  for (p in val) {
+//    var td = document.createElement('td');
+//    td.textContent = val[p];
+//    tr.appendChild(td);
+//  }
+//});
 
-// var trHead = document.createElement('tr');
-// var headers = ["Player Name" , "Player Score"];
-//
-// headers.forEach(function(val,ind,arr){
-//   var th = document.createElement('th');
-//   th.textContent = val;
-//   trHead.appendChild(th);
-// });
-//
-// table.appendChild(trHead); // Add headers to table
-//
-// data.forEach(function(val,ind,arr){
-//   // Construct resort table rows
-//   var tr = document.createElement('tr');
-//
-//   for (p in val) {
-//     var td = document.createElement('td');
-//     td.textContent = val[p];
-//     tr.appendChild(td);
-//   }
-// });
- }
+

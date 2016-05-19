@@ -17,7 +17,7 @@ public class Scores {
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private int id; 
 	private String name; 
-	private int score;
+	private int scores;
 	
 	
 	
@@ -32,7 +32,7 @@ public class Scores {
 		super();
 		this.id = id;
 		this.name = name;
-		this.score = score;
+		this.scores = score;
 	}
 
 
@@ -62,20 +62,20 @@ public class Scores {
 
 
 	public int getScore() {
-		return score;
+		return scores;
 	}
 
 
 
 	public void setScore(int score) {
-		this.score = score;
+		this.scores = score;
 	}
 
 
 
 	@Override
 	public String toString() {
-		return "Scores [id=" + id + ", name=" + name + ", score=" + score + "]";
+		return "Name:" + name + ", Score:" + scores;
 	} 
 	
 	

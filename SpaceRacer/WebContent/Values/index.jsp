@@ -17,8 +17,8 @@
   <input type="text" id="playerscore">
   <input type="button" value="Submit" id="submitButton" />
 </form>
-<script src='app.js'></script>
-<script src='app2.js'></script>  
+<script src='SpaceRacerScores.js'></script>
+<script src='SpaceRacer.js'></script>  
 
 </body>
 </html>

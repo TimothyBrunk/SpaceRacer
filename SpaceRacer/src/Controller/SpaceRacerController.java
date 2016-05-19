@@ -25,7 +25,7 @@ public class SpaceRacerController {
 	
 	@RequestMapping("scores")
 	public List<Scores> getScores() {
-		
+		System.out.println("In Get Scores");
 		return spaceracerdao.getAllScores();  
 	}
 	@RequestMapping(value = "scores", method=RequestMethod.POST) 
