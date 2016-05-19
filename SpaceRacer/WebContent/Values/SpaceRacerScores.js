@@ -12,11 +12,11 @@ var clearScoresTable = (function(){
 	table.parentElement.removeChild(table);
 });
 //************************Build Table************************************
-var buildScoresTable = (function(data){
+var buildScoresTable = (function(data) {
 	// Sort data by snowDepth
 	// data.sort(function(a,b){
 	// 	return b.score - a.snowDepth;
-	// });
+});
 
 
 	var scoresDiv = document.getElementById('scores');
@@ -32,7 +32,7 @@ var buildScoresTable = (function(data){
 
 	xhr.onreadystatechange = function() {
 		if(xhr.readyState === 4) {
-			var data = JSON.parse(xhr.responseText);
+
 
 			// Call function construct table with available data
 			buildScoresTable(data);
@@ -42,7 +42,7 @@ var buildScoresTable = (function(data){
 	xhr.send(null);
 });
 
-
+scoresDiv.appendChild(table);
 
 //*********************Headers********************************************
 //
@@ -67,5 +67,3 @@ var buildScoresTable = (function(data){
 //    tr.appendChild(td);
 //  }
 //});
-
-
