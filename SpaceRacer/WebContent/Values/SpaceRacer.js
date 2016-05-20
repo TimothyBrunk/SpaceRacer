@@ -30,12 +30,13 @@ function drawAstroid() {
   ctx.closePath();
 }
 
-
-var myObstacle;
+var myScore;
+var myObstacles = [];
 
 function startGame() {
     myGamePiece = new component(30, 30, "red", 225, 225);
     myObstacle = new component (30, 30, "gray", 150, 120);
+    myScore = new component("10px", "Consolas", "yellow", 40, 40, "text")
     myGameArea.start();
 }
 var myGameArea = {
@@ -66,6 +67,10 @@ var myGameArea = {
        clearInterval(this.interval);
    }
 }
+function everyinterval(n) {
+  if ((myGameArea.frameNo/n) % 1 ==0) {return true; }
+  return false;
+}
 
 function component(width, height, color, x, y, type) {
  this.type = type;
@@ -79,12 +84,18 @@ function component(width, height, color, x, y, type) {
 
     this.update = function() {
         ctx = myGameArea.context;
+        if (this.type == "text") {
+      ctx.font = this.width + " " + this.height;
+      ctx.fillStyle = color;
+      ctx.fillText(this.text, this.x, this.y);
+    } else {
         ctx.save();
         ctx.translate(this.x, this.y);
         ctx.rotate(this.angle);
         ctx.fillStyle = color;
         ctx.fillRect(this.width / -2, this.height / -2, this.width, this.height);
         ctx.restore();
+      }
     }
     this.newPos = function() {
         this.angle += this.moveAngle * Math.PI / 180;
@@ -113,20 +124,40 @@ this.crashWith = function(otherobj) {
   }
 }
 function updateGameArea() {
-  if (myGamePiece.crashWith(myObstacle)) {
-        myGameArea.stop();
-    } else {
+  var x, y;
+    for (i = 0; i < myObstacles.length; i += 1) {
+        if (myGamePiece.crashWith(myObstacles[i])) {
+            myGameArea.stop();
+            return;
+        }
+    }
     myGameArea.clear();
+    myGameArea.frameNo += 1;
+    if (myGameArea.frameNo == 1 || everyinterval(150)) {
+     x = myGameArea.canvas.width;
+     minHeight = 20;
+     maxHeight = 200;
+     xrand = Math.floor(Math.random()*(maxHeight-minHeight+1)+minHeight);
+     minGap = 50;
+     maxGap = 200;
+     gap = Math.floor(Math.random()*(maxGap-minGap+1)+minGap);
+     myObstacles.push(new component(30, 30, "gray", xrand, 0));
+     myObstacles.push(new component(30, 30, "gray", xrand, height + gap));
+ }
+    for (i = 0; i < myObstacles.length; i += 1) {
+        myObstacles[i].y += 1;
+        myObstacles[i].update();
+    }
+    myObstacle.y += 1;
+    myObstacle.update();
     myGamePiece.moveAngle = 0;
     myGamePiece.speed = 0;
     if (myGameArea.keys && myGameArea.keys[37]) {myGamePiece.moveAngle = -1; }
     if (myGameArea.keys && myGameArea.keys[39]) {myGamePiece.moveAngle = 1; }
     if (myGameArea.keys && myGameArea.keys[38]) {myGamePiece.speed= 1; }
     if (myGameArea.keys && myGameArea.keys[40]) {myGamePiece.speed= -1; }
-    myObstacle.y += 1;
-    myObstacle.update();
+    myScore.text="SCORE: " + myGameArea.frameNo;
+    myScore.update();
     myGamePiece.newPos();
     myGamePiece.update();
-}
-
 }
