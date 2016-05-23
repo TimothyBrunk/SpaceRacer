@@ -29,7 +29,8 @@ public class SpaceRacerController {
 		return spaceracerdao.getAllScores();  
 	}
 	@RequestMapping(value = "scores", method=RequestMethod.POST) 
-	public void addScore(@RequestBody Scores s) { 
+	public void postScore(@RequestBody Scores s) { 
+		spaceracerdao.postScore(s, s.getName(), s.getScore());
 		
 	}
 	

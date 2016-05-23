@@ -1,40 +1,24 @@
 
+
+
+var myObstacles = [];
 var canvas = document.getElementById('myCanvas');
 var ctx = canvas.getContext('2d');
 
-
-var ballRadius =15;
-var x = canvas.width/3;
-var y = canvas.height-20;
-var dx = 4
-Math.floor(Math.random() * 11);
-console.log(dx);
-var dy = -2;
 
 
 // //*************************On Load***************************************
  addEventListener("load", function() {
     startGame();
-  //  setInterval(draw, 100);
-
 
 
  });
-//**********************Astroid 1**************************************
 
-function drawAstroid() {
-  ctx.beginPath();
-  ctx.arc(x, y, ballRadius, 0, Math.PI*2);
-  ctx.fillStyle = "#808080";
-  ctx.fill();
-  ctx.closePath();
-}
 
-var myScore;
-var myObstacles = [];
+
 
 function startGame() {
-    myGamePiece = new component(30, 30, "red", 225, 225);
+    myGamePiece = new component(20, 20, "red", 225, 225);
     myObstacle = new component (30, 30, "gray", 150, 120);
     myScore = new component("10px", "Consolas", "yellow", 40, 40, "text")
     myGameArea.start();
@@ -71,7 +55,7 @@ function everyinterval(n) {
   if ((myGameArea.frameNo/n) % 1 ==0) {return true; }
   return false;
 }
-
+//*********************Component  Constructor****************************
 function component(width, height, color, x, y, type) {
  this.type = type;
     this.width = width;
@@ -103,7 +87,7 @@ function component(width, height, color, x, y, type) {
         this.y -= this.speed * Math.cos(this.angle);
     }
 
-
+// **************************Crash **********************************
 this.crashWith = function(otherobj) {
       var myleft = this.x;
       var myright = this.x + (this.width);
@@ -123,23 +107,45 @@ this.crashWith = function(otherobj) {
       return crash;
   }
 }
+function passScores() {
+  console.log("passScores");
+  var f = document.createElement("form");
+f.setAttribute('method',"post");
+f.setAttribute('action',"submit.php");
+
+// ********************working on score function***********************
+var s = document.createElement("input"); //input element, Submit button
+s.setAttribute('type',"text");
+s.setAttribute('value',myScore);
+
+
+f.appendChild(s);
+
+
+
+document.getElementsByTagName('body')[0].appendChild(f);
+
+
+}
 function updateGameArea() {
   var x, y;
     for (i = 0; i < myObstacles.length; i += 1) {
         if (myGamePiece.crashWith(myObstacles[i])) {
             myGameArea.stop();
+            endGame();
             return;
         }
     }
     myGameArea.clear();
     myGameArea.frameNo += 1;
-    if (myGameArea.frameNo == 1 || everyinterval(150)) {
+    //*****************Obstacals *****************************
+    if (myGameArea.frameNo == 1 || everyinterval(25)) {
      x = myGameArea.canvas.width;
-     minHeight = 20;
-     maxHeight = 200;
+     minHeight = 0;
+     maxHeight = 300;
      xrand = Math.floor(Math.random()*(maxHeight-minHeight+1)+minHeight);
-     minGap = 50;
-     maxGap = 200;
+     minGap = 0;
+     maxGap = 300;
      gap = Math.floor(Math.random()*(maxGap-minGap+1)+minGap);
      myObstacles.push(new component(30, 30, "gray", xrand, 0));
      myObstacles.push(new component(30, 30, "gray", xrand, height + gap));
@@ -152,12 +158,33 @@ function updateGameArea() {
     myObstacle.update();
     myGamePiece.moveAngle = 0;
     myGamePiece.speed = 0;
+    //*****************Move Game Piece**********************************
     if (myGameArea.keys && myGameArea.keys[37]) {myGamePiece.moveAngle = -1; }
     if (myGameArea.keys && myGameArea.keys[39]) {myGamePiece.moveAngle = 1; }
     if (myGameArea.keys && myGameArea.keys[38]) {myGamePiece.speed= 1; }
     if (myGameArea.keys && myGameArea.keys[40]) {myGamePiece.speed= -1; }
     myScore.text="SCORE: " + myGameArea.frameNo;
     myScore.update();
+    myGlobalScore = myGameArea.frameNo;
+    myGlobalScore.id="globalScore";
+
+
     myGamePiece.newPos();
     myGamePiece.update();
+
 }
+
+console.log(myGlobalScore);
+
+    function clear(canvas) {
+        canvas.getContext('2d').clearRect(0,0,canvas.width,canvas.height);
+    }
+
+    function endGame() {
+       window.location.href = 'http://localhost:8080/SpaceRacer/scores.html'
+
+      console.log("End Game");
+      console.log(myGlobalScore);
+
+      clear(canvas);
+    }

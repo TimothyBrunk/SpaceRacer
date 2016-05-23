@@ -17,7 +17,7 @@ public class SpaceRacerDataDAO implements SpaceRacerDAO {
 	@Override
 	public List<Scores> getAllScores() {
 		int pageSize = 10; 
-		List<Scores> scores = em.createQuery("Select s from Scores s order by scores", Scores.class ).setMaxResults(pageSize).getResultList(); 
+		List<Scores> scores = em.createQuery("Select s from Scores s order by scores desc", Scores.class ).setMaxResults(pageSize).getResultList(); 
 		System.out.println(scores);
 		System.out.println("In DAO");
 		return scores; 
@@ -25,6 +25,7 @@ public class SpaceRacerDataDAO implements SpaceRacerDAO {
 	
 	@Override 
 	public void postScore(Scores s, String name, int score) { 
+		System.out.println("In DAO");
 		s.setName(name);
 		s.setScore(score);
 		em.persist(s);
