@@ -2900,3 +2900,7 @@
 2016-05-23 00:41:15,831 [Worker-501] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory /Users/timothybrunk/Desktop/game/SpaceRacer/src/main/resources
 2016-05-23 00:41:15,833 [Worker-501] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (UTF-8 actually) to copy filtered resources, i.e. build is platform dependent!
 2016-05-23 00:41:15,834 [Worker-501] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory /Users/timothybrunk/Desktop/game/SpaceRacer/src/test/resources
+2016-05-23 14:32:34,625 [Worker-599] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (UTF-8 actually) to copy filtered resources, i.e. build is platform dependent!
+2016-05-23 14:32:34,629 [Worker-599] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory /Users/timothybrunk/Desktop/game/SpaceRacer/src/main/resources
+2016-05-23 14:32:34,631 [Worker-599] WARN  o.e.m.c.i.embedder.EclipseLogger - Using platform encoding (UTF-8 actually) to copy filtered resources, i.e. build is platform dependent!
+2016-05-23 14:32:34,631 [Worker-599] INFO  o.e.m.c.i.embedder.EclipseLogger - skip non existing resourceDirectory /Users/timothybrunk/Desktop/game/SpaceRacer/src/test/resources

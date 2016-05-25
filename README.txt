@@ -1,1 +1,2 @@
 This game project began half-way through the second week of JavaScript. 
+With this game I brought together the technologies of JavaScript using canvas for this first time, including Java, JPA and mySQL for the backend of the score keeping. 
